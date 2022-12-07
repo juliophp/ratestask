@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  postgres_db:
+    container_name: postgres_demo
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ratestask
+      POSTGRES_DB: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ./rates.sql:/docker-entrypoint-initdb.d/rates.sql
+    ports:
+      - 5432:5432
+
+  ratestask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+       - 8000:8000
+    depends_on:
+      - postgres_db
+
+volumes:
+  postgres-db:
+    driver: local
