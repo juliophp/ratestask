@@ -10,9 +10,9 @@ def generate_find_rate_query(origin: str, destination: str, date_from: str, date
     :return: final query to be executed by the db
     """
 
-    sql = "WITH RECURSIVE children AS (SELECT r.slug, r.parent_slug, r.slug as heirachy FROM regions r " \
+    sql = "WITH RECURSIVE children AS (SELECT r.slug, r.parent_slug, r.slug as heirarchy FROM regions r " \
              "WHERE r.parent_slug is null UNION ALL SELECT  rr.slug, rr.parent_slug, " \
-             "rr.slug || ', ' || d.heirachy FROM regions rr INNER JOIN children d ON d.slug = rr.parent_slug), " \
+             "rr.slug || ', ' || d.heirarchy FROM regions rr INNER JOIN children d ON d.slug = rr.parent_slug), " \
              "slugs AS (SELECT * From children), ports AS (SELECT * from public.ports p join slugs s on " \
              "p.parent_slug = s.slug), average_prices AS (SELECT day, round(avg(price)) as average_price " \
              "from public.prices where orig_code in ({origin_query}) and dest_code in " \
@@ -22,7 +22,7 @@ def generate_find_rate_query(origin: str, destination: str, date_from: str, date
              "from generate_series('{date_from}', '{date_to}', INTERVAL '1 day') " \
              "dt LEFT JOIN base_table bt on bt.day = dt"
 
-    ports_query = "SELECT code from ports where heirachy like '%{slug}%'"
+    ports_query = "SELECT code from ports where heirarchy like '%{slug}%'"
 
     # check if origin is a valid port else it's a slug, assign query accordingly
     if is_valid_port_code(origin):
