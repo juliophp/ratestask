@@ -11,10 +11,10 @@ def generate_find_rate_query(origin: str, destination: str, date_from: str, date
     """
 
     code_from_slug_query = "select code from public.ports where parent_slug in (WITH RECURSIVE children AS " \
-                           "(SELECT r.name, r.slug, r.parent_slug, r.slug as Level " \
-                           "FROM regions r WHERE r.parent_slug is null UNION ALL SELECT rr.name, rr.slug, " \
-                           "rr.parent_slug, rr.slug || ', ' || d.Level FROM regions rr INNER JOIN children d " \
-                           "ON d.slug = rr.parent_slug) SELECT slug From children where Level like '%{slug}%')"\
+                           "(SELECT r.slug, r.parent_slug, r.slug as heirachy FROM regions r WHERE r.parent_slug " \
+                           "is null UNION ALL SELECT rr.slug, rr.parent_slug, rr.slug || ', ' || d.heirachy FROM " \
+                           "regions rr INNER JOIN children d ON d.slug = rr.parent_slug) SELECT slug From children " \
+                           "where heirachy like '%{slug}%')"\
 
 
     gs_query = f"select dt::date as day, bt.average_price from " \
