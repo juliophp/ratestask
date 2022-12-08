@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2213f546-1d25-4d25-8337-0df988c414a2" name="Changes" comment="" />
+    <list default="true" id="2213f546-1d25-4d25-8337-0df988c414a2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/repository/query_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/repository/query_generator.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +147,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670316248511</updated>
       <workItem from="1670316249728" duration="26282000" />
-      <workItem from="1670404066928" duration="46054000" />
+      <workItem from="1670404066928" duration="56825000" />
     </task>
     <servers />
   </component>
